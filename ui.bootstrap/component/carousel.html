@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>carousel</title>
+  <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/angular-animate/angular-animate.js"></script>
+  <script src="../node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+
+  <div uib-carousel active="0" interval="1000">
+      <div uib-slide index="0">
+        <img src="./img/001.jpg" alt="">
+      </div>
+      <div uib-slide index="1">
+        <img src="./img/002.jpg" alt="">
+      </div>
+      <div uib-slide index="2">
+        <img src="./img/003.jpg" alt="">
+      </div>
+    </div>
+</div>
+<script>
+  
+  angular.module("myApp",["ngAnimate","ngSanitize","ui.bootstrap"]).
+    controller("myCtrl",["$scope",function($scope){
+
+    }])
+</script>
+  
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/angular-animate/angular-animate.js"></script>
+  <script src="../node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+  <div ng-app="myApp" ng-controller="myCtrl" style="width: 300px;">
+    <uib-accordion close-others="true">
+      <div 
+        uib-accordion-group 
+        class="panel-default" 
+        heading="沙扬娜拉" 
+        is-open="true" 
+        is-disabled="false"><!-- is-open 默认展开 -->
+        <div>
+          <ul>
+            <li>最是那一低头的温柔</li>
+            <li>像一朵水莲花不胜凉风的娇羞</li>
+            <li>道一声珍重 道一声珍重</li>
+            <li>那一声珍重里有蜜甜的忧愁</li>
+            <li>沙扬娜拉 沙扬娜拉 </li>
+          </ul>
+        </div>
+      </div>
+
+      <div 
+        uib-accordion-group 
+        class="panel-default" 
+        heading="沙扬娜拉" 
+        is-open="true" 
+        is-disabled="false"
+        template-url="according-template.html"><!-- is-open 默认展开 -->
+        <div>
+        <!-- 第二个变色 -->
+          <ul style="list-style: none;">
+            <li>最是那一低头的温柔</li>
+            <li>像一朵水莲花不胜凉风的娇羞</li>
+            <li>道一声珍重 道一声珍重</li>
+            <li>那一声珍重里有蜜甜的忧愁</li>
+            <li>沙扬娜拉 沙扬娜拉 </li>
+          </ul>
+        </div>
+      </div>
+    </uib-accordion>
+      
+  <script type="text/ng-template" id="according-template.html">
+    <div class="panel-heading">
+      <h4 class="panel-title" style="color:#fa39c3">
+        <a href tabindex="0" 
+          class="accordion-toggle" 
+          ng-click="toggleOpen()" 
+          uib-accordion-transclude="heading">
+          <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+            {{heading}}
+          </span>
+        </a>
+      </h4>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="panel-body" style="text-align: left" ng-transclude></div>
+    </div>
+  </script>
+  </div>
+
+
+  <script>
+    angular.module('myApp',['ngSanitize','ngAnimate','ui.bootstrap']).
+      controller('myCtrl',['$scope',function($scope){
+
+      }])
+  </script>
+</body>
+</html>

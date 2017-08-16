@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/angular-animate/angular-animate.js"></script>
+  <script src="../node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-app="myApp">
+  <div ng-controller="myCtrl">
+    <h4>文章</h4>
+    <ul uib-pagination items-per-page="5" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" force-ellipses="true">
+      <li href="#">1.qbhwdyfquxyvaslxyu</li>
+      <li href="#">2.qbhwdyfquxyvaslxyu</li>
+      <li href="#">3.qbhwdyfquxyvaslxyu</li></ul>
+    <ul uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+      boundary-links:第一个的与最后一个的是否显示
+      currentPage:默认显示页码
+      //所有标签都显示
+
+    </ul>
+    <ul uib-pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage">
+      direction-links:是否显示上一个和下一个按钮
+      //上一个与下一个不显示
+    </ul>
+    <ul uib-pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages">
+      //上一个下一个，第一个最后一个，都不显示   
+    </ul>
+
+    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+
+    <pre>The selected page no（选择的页面）: {{currentPage}}</pre>
+     <button type="button" class="btn btn-info" ng-click="setPage(3)">Set current page to(设置当前页面为): 3</button>
+
+     <hr/>
+
+     <h6><code>rotate</code> defaulted to <code>true</code>:</h6>
+
+     <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></ul>
+
+     <h6><code>rotate</code> defaulted to <code>true</code> and <code>force-ellipses</code> set to <code>true</code>:</h6>
+     <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true">
+       force-ellipses:超出限制显示的页面数用...表示 默认为false不显示...
+     </ul>
+
+
+      <h6><code>rotate</code> set to <code>false</code>:</h6>
+        <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false">
+          ratate：默认true,不显示... 改为false 显示...
+        </ul>
+
+      <h6><code>boundary-link-numbers</code> set to <code>true</code> and <code>rotate</code> defaulted to <code>true</code>:</h6>
+      <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true">
+        boundary-link-numbers:当选择的页面为中间的页面时，两边都会出现...
+      </ul>
+
+      <h6><code>boundary-link-numbers</code> set to <code>true</code> and <code>rotate</code> set to <code>false</code>:</h6>
+        <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+
+    <hr/>
+    <ul uib-pagination direction-links="true" total-items="totalItems" max-size="maxSize" boundary-link-numbers="true" ng-model="currentPage" num-pages="smallnumPages">
+      //第一个最后一个，不显示   
+    </ul>
+<br>
+    <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"  boundary-link-numbers="true" rotate="false"></ul>
+  </div>
+
+  <script>
+
+    angular.module("myApp",["ngAnimate","ngSanitize","ui.bootstrap"]).
+    controller("myCtrl",function($scope,$log){
+      $scope.totalItems = 64;
+      $scope.currentPage = 2; //默认当前页码
+      $scope.setPage = function(pageNo){
+        $scope.currentPage = pageNo;
+      };
+      $scope.pageChanged = function(){
+        $log.log("Page changed to:" + $scope.currentPage);
+      };
+      $scope.maxSize = 5;   //限制显示出来的页面数，总共显示5个
+      $scope.bigTotalItems = 175;
+      $scope.bigCurrentPage = 1;  //默认的当前页码
+    })
+  </script>
+</body>
+</html>
